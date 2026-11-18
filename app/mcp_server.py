@@ -4,6 +4,7 @@ from __future__ import annotations
 import base64
 
 from mcp.server.fastmcp import FastMCP
+from mcp.server.transport_security import TransportSecuritySettings
 from mcp.types import ImageContent, TextContent
 
 from .payloads import make_code
@@ -19,6 +20,10 @@ def build_mcp() -> FastMCP:
         ),
         streamable_http_path="/mcp",
         stateless_http=True,
+        # 部署在反向代理/自定义域名后面，Host 头不是 localhost；默认的 DNS rebinding
+        # 保护会把公网请求判成 421 Misdirected Request。该 mock 不带鉴权和会话状态，
+        # 这里直接关闭，由外层网关负责访问控制。
+        transport_security=TransportSecuritySettings(enable_dns_rebinding_protection=False),
     )
 
     @mcp.tool(description="Return a PNG image block plus its text marker.")
