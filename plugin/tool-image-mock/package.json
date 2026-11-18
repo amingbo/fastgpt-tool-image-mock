@@ -1,0 +1,14 @@
+{
+  "name": "tool-image-mock",
+  "version": "1.0.0",
+  "description": "Mock FastGPT system tool returning image content (FastGPT PR #7923)",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "fastgpt-plugin build --minify"
+  },
+  "devDependencies": {
+    "@fastgpt-plugin/sdk-factory": "workspace:*",
+    "zod": "catalog:"
+  }
+}

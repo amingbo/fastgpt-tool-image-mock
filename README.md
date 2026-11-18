@@ -64,6 +64,7 @@ python tests/smoke_test.py --base-url https://your-host
 2. **MCP 工具集**：新建 → MCP 工具集，URL 填 `https://your-host/mcp`，协议 Streamable HTTP。
 3. **对话应用**：新建简单 Agent，模型选视觉模型（QA 用 `qwen3.8-omni-flash`），挂上对应工具，提示词要求“必须先调用 XX 工具，再只用图片里的标记回答”。
 4. **对照组**：同一工具再建一个模型换成不支持视觉的应用，验证图片被过滤成文本占位。
+5. **插件**：安装 `plugin/` 下的 `tool-image-mock.pkg`，密钥项填同一个 Base URL。插件路径需要被测环境的 fastgpt-plugin 包含 labring/fastgpt-plugin#563，详见 `plugin/README.md`。
 
 ## 压缩场景怎么触发
 
@@ -79,5 +80,5 @@ python tests/smoke_test.py --base-url https://your-host
 
 ## 已知边界
 
-- 插件路径（输出字段 `x-fastgpt-output-kind: model-content`）由 labring/fastgpt-plugin#563 实现，本服务无法模拟，需要该插件版本部署后再验。
+- 插件路径由 `plugin/tool-image-mock.pkg` 提供，依赖被测环境的 fastgpt-plugin 包含 #563；插件服务未升级时装上也只按普通对象返回。
 - 工作流工具（应用即工具）返回的是应用回答文本，不走 `content` 契约；要验证契约请用工具节点 / HTTP / MCP / 插件。
