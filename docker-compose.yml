@@ -1,0 +1,10 @@
+services:
+  tool-image-mock:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      # 公网访问地址；部署在反向代理后面时必须显式设置，否则图片地址会指向内网。
+      PUBLIC_BASE_URL: ${PUBLIC_BASE_URL:-}
+      PORT: "8000"
+    restart: unless-stopped

@@ -1,0 +1,20 @@
+{
+  "baseUrl": "https://your-host",
+  "method": "GET",
+  "note": "全部工具不需要入参；按 name/path 在 HTTP 工具集里逐个添加，或作为 toolList 直接提交创建接口。",
+  "tools": [
+    { "name": "image_tool", "description": "返回一张图片，图片中有需要识别的标记", "path": "/tool/image" },
+    { "name": "image_tool_a", "description": "返回图片 A，图片中有需要识别的标记", "path": "/tool/image-a" },
+    { "name": "image_tool_b", "description": "返回图片 B，图片中有需要识别的标记", "path": "/tool/image-b" },
+    { "name": "multi_text_tool", "description": "返回三段文本和一张图片", "path": "/tool/multi-text" },
+    { "name": "text_only_tool", "description": "只返回文本结果", "path": "/tool/text-only" },
+    { "name": "bad_empty_url", "description": "图片地址为空的非法响应", "path": "/tool/bad-empty-url" },
+    { "name": "bad_detail", "description": "图片 detail 非法的响应", "path": "/tool/bad-bad-detail" },
+    { "name": "bad_empty_text", "description": "包含空文本片段的响应", "path": "/tool/bad-empty-text" },
+    { "name": "empty_content", "description": "content 为空数组的响应", "path": "/tool/bad-empty-array" },
+    { "name": "huge_tool", "description": "返回超长文本与一张图片，用于触发工具响应压缩", "path": "/tool/huge" },
+    { "name": "many_images_tool", "description": "一次返回六张图片", "path": "/tool/many-images" },
+    { "name": "broken_image_tool", "description": "图片地址不可达", "path": "/tool/broken-image" },
+    { "name": "data_uri_tool", "description": "以 data URI 返回图片", "path": "/tool/data-uri" }
+  ]
+}
