@@ -14,6 +14,13 @@ docker compose up -d --build
 docker build -t fastgpt-tool-image-mock . && docker run -p 8000:8000 -e PUBLIC_BASE_URL=https://your-host fastgpt-tool-image-mock
 ```
 
+已发布镜像（GitHub Actions 构建，linux/amd64 + linux/arm64）：
+
+```bash
+docker pull ghcr.io/amingbo/fastgpt-tool-image-mock:latest
+docker run -p 8000:8000 -e PUBLIC_BASE_URL=https://your-host ghcr.io/amingbo/fastgpt-tool-image-mock:latest
+```
+
 **必须设置 `PUBLIC_BASE_URL`** 为部署后的公网地址（不带结尾斜杠）。FastGPT 服务端要按这个地址回下载图片；留空时会退回请求头里的 Host，反向代理后容易生成内网地址。
 
 自检：
